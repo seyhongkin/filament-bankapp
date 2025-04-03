@@ -9,7 +9,7 @@
                     Balance
                 </p>
                 <p class="font-medium">
-                    $5,742
+                    {{ ($balance < 0 ? '-$' : '$') . number_format(abs($balance), 2) }}
                 </p>
             </div>
             @if ($isDefault)
@@ -50,7 +50,7 @@
                     Card Holder
                 </p>
                 <p class="font-medium">
-                    Eddy Cusuma
+                    {{ $cardHolder }}
                 </p>
             </div>
 
@@ -59,13 +59,13 @@
                     Valid Thru
                 </p>
                 <p class="font-medium">
-                    12/22
+                    {{ $validThru }}
                 </p>
             </div>
         </div>
         <div>
             <div class="flex justify-between">
-                <h1>3778 **** **** 1234</h1>
+                <h1>{{ $this->maskCardNumber($cardNumber) }}</h1>
 
                 <div class="">
                     @if ($isDefault)

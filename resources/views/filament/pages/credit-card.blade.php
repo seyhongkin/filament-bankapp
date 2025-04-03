@@ -1,10 +1,20 @@
 <x-filament-panels::page>
-    <div class="grid md:grid-cols-3">
-        @livewire('credit-card', ['isDefault' => true])
-
-        @livewire('credit-card')
-
-        @livewire('credit-card')
+    <div class="flex overflow-x-auto">
+        @foreach ($cards as $card)
+            <div class="min-w-[400px]">
+                @livewire(
+                'credit-card',
+                [
+                    'isDefault' => $card->is_default ?? false,
+                    'balance' => $card->balance,
+                    'cardHolder' => $card->card_holder,
+                    'validThru' => $card->valid_thru,
+                    'cardNumber' => $card->card_number,
+                ],
+                $card->cardNumber
+            )
+            </div>
+        @endforeach
     </div>
 
     <div class="grid md:grid-cols-3 gap-4">

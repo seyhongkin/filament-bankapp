@@ -2,6 +2,7 @@
 namespace App\Filament\Widgets;
 
 use Filament\Widgets\ChartWidget;
+use Illuminate\Support\Facades\DB;
 
 class CardExpenseStatistics extends ChartWidget
 {
@@ -9,10 +10,23 @@ class CardExpenseStatistics extends ChartWidget
 
     protected function getData(): array
     {
+        // Query the database
+        $transactions = DB::table('bankapp.transactions as t')
+            ->join('cards as c', 'c.card_number', '=', 't.card_number')
+            ->where('t.amount', '<', 0)
+            ->select(DB::raw('sum(t.amount) as total_amount, c.bank_name'))
+            ->groupBy('c.bank_name')
+            ->get();
+
+                                                                   // Format data for chart
+        $labels = $transactions->pluck('bank_name')->toArray();    // Get bank names
+        $data   = $transactions->pluck('total_amount')->toArray(); // Get total amounts for each bank
+
+        // Return the chart data structure
         return [
             'datasets' => [
                 [
-                    'data'            => [180, 200, 150, 300],
+                    'data'            => $data, // The sum of amounts for each bank
                     'backgroundColor' => [
                         'rgb(255, 99, 132)',
                         'rgb(235, 54, 166)',
@@ -21,7 +35,7 @@ class CardExpenseStatistics extends ChartWidget
                     ],
                 ],
             ],
-            'labels'   => ['ABA Bank', 'Aceleda Bank', 'Canadia Bank', 'Vatanak Bank'],
+            'labels'   => $labels, // Bank names as the labels
         ];
     }
 
