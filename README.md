@@ -14,29 +14,29 @@ A Laravel-based payment system integrated with Telegram Bot API.
 
 ## 🔧 Installation
 
-# Clone the repository
+### Clone the repository
 ```bash
-git clone https://github.com/yourusername/your-repo.git
-cd your-repo
+git clone https://github.com/seyhongkin/filament-bankapp.git
+cd filament-bankapp
 ```
 
-# Install PHP dependencies
+### Install PHP dependencies
 ```bash
 composer install
 ```
 
-# Install JavaScript dependencies
+### Install JavaScript dependencies
 ```bash
 npm i
 ```
 
-# Setup environment
+### Setup environment
 ```bash
 cp .env.example .env
 php artisan key:generate
 ```
 
-# .env
+### .env
 ```bash
 DB_CONNECTION=mysql
 DB_HOST=your_db_host
@@ -49,25 +49,25 @@ TELEGRAM_BOT_TOKEN=7819975411:AAGJs_gjnOUbQ4058cYDS1DVCa-ZOlDSTXM
 TELEGRAM_API_ENDPOINT=https://api.telegram.org
 ```
 
-# Run migrations
+### Run migrations
 ```bash
 php artisan migrate
 ```
 
-# Create admin user
+### Create admin user
 ```bash
 php artisan make:filament-user
 ```
 
-# Seed sample data
+### Seed sample data
 ```bash
 php artisan db:seed
 ```
 
-# Install Ngrok
+### Install Ngrok
 https://ngrok.com/
 
-# Start Server
+### Start Server
 ```bash
 # Laravel development server
 php artisan serve
@@ -76,12 +76,12 @@ php artisan serve
 ngrok http 8000
 ```
 
-# Set webhook (replace with your Ngrok URL):
+### Set webhook (replace with your Ngrok URL):
 ```bash
 https://api.telegram.org/bot7819975411:AAGJs_gjnOUbQ4058cYDS1DVCa-ZOlDSTXM/setWebhook?url=https://your-ngrok-url.ngrok-free.app/api/telegram/webhook/inbound
 ```
 
-# Test Payment
+### Test Payment
 ```bash
 php artisan tinker
 
