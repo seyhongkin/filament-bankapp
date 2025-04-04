@@ -11,7 +11,7 @@ class CardExpenseStatistics extends ChartWidget
     protected function getData(): array
     {
         // Query the database
-        $transactions = DB::table('bankapp.transactions as t')
+        $transactions = DB::table('transactions as t')
             ->join('cards as c', 'c.card_number', '=', 't.card_number')
             ->where('t.amount', '<', 0)
             ->select(DB::raw('sum(t.amount) as total_amount, c.bank_name'))

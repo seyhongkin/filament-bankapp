@@ -11,7 +11,7 @@ class MyExpenseChart extends ChartWidget
     public function getData(): array
     {
         // Execute the query to get the sum of negative amounts, grouped by month/year
-        $transactions = DB::table('bankapp.transactions')
+        $transactions = DB::table('transactions')
             ->select(DB::raw('ABS(SUM(amount)) as total_amount, DATE_FORMAT(created_at, "%Y-%m") as month'))
             ->where('amount', '<', 0)
             ->groupBy('created_at')

@@ -13,7 +13,7 @@ class ExpenseStatisticsChart extends ChartWidget
         // Fetch the data from the database
         $transactions = DB::select('
             SELECT type, SUM(amount) AS total_amount
-            FROM bankapp.transactions
+            FROM transactions
             WHERE amount < 0
             GROUP BY type
         ');

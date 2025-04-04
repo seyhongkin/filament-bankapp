@@ -19,7 +19,7 @@ class WeeklyActivityChart extends ChartWidget
                     ELSE "Positive"
                 END AS transaction_type,
                 DATE_FORMAT(created_at, "%a") AS day
-            FROM bankapp.transactions
+            FROM transactions
             WHERE created_at >= DATE_SUB(CURDATE(), INTERVAL 7 DAY)
             GROUP BY transaction_type, DATE_FORMAT(created_at, "%a")
             ORDER BY DATE_FORMAT(created_at, "%a");
